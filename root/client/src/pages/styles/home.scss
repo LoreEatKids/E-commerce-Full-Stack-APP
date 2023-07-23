@@ -1,0 +1,110 @@
+@import "../../styles/main.scss";
+@import url("https://fonts.cdnfonts.com/css/made-infinity-personal-use");
+@import "./responsive/home.scss";
+
+.first-page {
+  height: 100vh;
+
+  main {
+    .img-background {
+      background-image: url("https://www.strengthcoachglasgow.co.uk/uploads/1/2/3/3/123320581/background-images/302034363.jpg");
+      background-repeat: no-repeat;
+      background-color: transparent;
+      background-size: cover;
+      background-attachment: fixed;
+      z-index: -1;
+      height: 100vh;
+      width: 100vw;
+      position: absolute;
+      top: 0;
+    }
+
+    .home-title-container {
+      margin-top: 8%;
+
+      h1 {
+        font-family: "MADE INFINITY PERSONAL USE", sans-serif !important;
+        text-align: center;
+        font-size: 60px;
+        color: $main-title-white-color;
+        line-height: 42px;
+        font-size: 50px;
+        font-weight: 900;
+
+        span {
+          font-size: 110px;
+          font-family: "MADE INFINITY PERSONAL USE" !important;
+        }
+      }
+    }
+
+    .home-steps {
+      width: 100%;
+      margin-top: 70px;
+      gap: 10%;
+      position: relative;
+
+      .discover {
+        display: none;
+        position: absolute;
+        left: 47%;
+        top: 44%;
+        color: white;
+        font-size: 35px;
+      }
+
+      &_step {
+        position: relative;
+
+        img {
+          width: 270px;
+          height: 270px;
+          object-fit: cover;
+          border-radius: 9999px;
+        }
+
+        &:hover {
+          img {
+            filter: brightness(40%);
+            transition: filter 300ms ease-out;
+          }
+          .discover {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}
+
+.title {
+  font-size: 50px;
+  font-weight: 900;
+  margin-bottom: 5px;
+}
+
+.coaching {
+  height: auto;
+  flex-direction: column;
+  text-align: center;
+  padding: 100px 0;
+
+  .coaching_infos {
+    margin-bottom: 50px;
+  }
+
+  .cards {
+    margin-top: 20px;
+    justify-content: center;
+
+    &.infos { gap: 25px; }
+    flex-wrap: wrap;
+    gap: 100px;
+
+    .product_btn {
+      margin-top: 20px;
+      justify-content: center;
+      gap: 20px;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+@use 'scss-reset/reset';
+@import "typography", "variables";
+
+* {
+    font-family: system-ui, -apple-system, sans-serif !important;
+} 
+
+body {
+    position: relative;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+img {
+    cursor: pointer;
+}
+
+.flex { display: block; }
+.d-f {
+    display: flex;
+    align-items: center;
+}
+.d-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

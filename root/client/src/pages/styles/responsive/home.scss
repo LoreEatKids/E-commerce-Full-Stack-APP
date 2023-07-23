@@ -1,0 +1,20 @@
+@media screen and (max-width: 768px) {
+  .cards.products {
+    flex-direction: column; /* Stack the cards vertically on smaller screens */
+    align-items: center; /* Center the cards vertically */
+  }
+}
+
+/* Media query for medium-sized screens (e.g., tablet) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .cards.products {
+    justify-content: space-between; /* Spread the cards evenly on medium-sized screens */
+  }
+}
+
+/* Media query for larger screens (e.g., desktop) */
+@media screen and (min-width: 1025px) {
+  .cards.products {
+    justify-content: flex-start; /* Align the cards to the start on larger screens */
+  }
+}

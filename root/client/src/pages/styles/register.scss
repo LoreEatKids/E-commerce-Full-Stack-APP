@@ -1,0 +1,32 @@
+@import "../../styles/main.scss";
+
+main.auth {
+    padding: 20px;
+
+    .page_infos, .form-container { 
+        height: calc(100vh - 40px); 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .page_infos {
+        background-color: $form-page-blue-color;
+        width: 32%;
+        border-radius: 15px;
+        padding: 0 30px;
+
+        * { color: #fff; }
+
+        h1 {
+            margin-bottom: 40px;
+            font-weight: 800;
+            font-size: 45px;
+            line-height: 45px;
+        }
+    }
+
+    .form-container {
+        width: 68%;
+    }
+}

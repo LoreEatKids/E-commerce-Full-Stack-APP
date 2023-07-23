@@ -1,0 +1,85 @@
+@import "../../styles/main.scss";
+
+@mixin OpacityHover {
+  &:hover {
+    opacity: 0.8;
+    transition: all 300ms;
+  }
+}
+
+.app_header {
+  padding: 15px 40px;
+  justify-content: space-between;
+  z-index: 999;
+  position: sticky;
+
+  * {
+    width: 33%;
+    color: white;
+  }
+
+  ul {
+    gap: 20px;
+  }
+  ul li {
+    font-size: 14px;
+    font-weight: 700;
+    text-align: left;
+    width: 20%;
+
+    @include OpacityHover;
+
+    a {
+      &::after {
+        display: flex;
+        content: "";
+        width: 0;
+        height: 2px;
+        background-color: #fff;
+        cursor: pointer;
+      }
+
+      &:hover {
+        &::after { 
+            width: inherit;
+            transition: all 200ms ease-out
+        };
+      }
+    }
+  }
+
+  .nav-pfp-container {
+    img {
+      width: $header-pfp-width;
+      height: $header-pfp-height;
+      border-radius: 9999px;
+      object-fit: cover;
+    }
+  }
+
+  .btn-container {
+    text-align: right;
+    justify-content: flex-end;
+
+    button {
+      font-weight: 700;
+      font-style: italic;
+      border: 3px solid #fff;
+      padding: 10px 3px;
+
+      @include OpacityHover;
+    }
+  }
+
+  .cart_container {
+    gap: 20px;
+    button {
+      width: 100%;
+    }
+
+    svg {
+      cursor: pointer;
+      width: 100%;
+    }
+  }
+}
