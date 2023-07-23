@@ -31,7 +31,7 @@ export const reducer = (state: cartType, action: ReducerAction): cartType => {
             throw new Error("action.payload missing in ADD FUNCTION");
         }
 
-        const {id, name, price, desc} = action.payload;
+        const {id, name, price, desc} = action.payload as cartItem;
         const filteredCart: cartItem[] = state.cartItems.filter(item => item.id !== id);
         const itemExist: cartItem | undefined = state.cartItems.find(item => item.id === id);
         const quantity: number = itemExist?.quantity ? itemExist.quantity + 1 : 1;
@@ -43,7 +43,7 @@ export const reducer = (state: cartType, action: ReducerAction): cartType => {
           throw new Error("action.payload missing in ADD FUNCTION");
         }
 
-        const { id } = action.payload;
+        const { id } = action.payload as cartItem;
         const filteredCart: cartItem[] = state.cartItems.filter(item => item.id !== id);
 
         return {...state, cartItems: [...filteredCart]};

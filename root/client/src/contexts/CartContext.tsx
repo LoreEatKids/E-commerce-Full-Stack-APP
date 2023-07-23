@@ -103,6 +103,7 @@ const CartProvider = ({ children }: childrenType) => {
     if (dataFetched) {
       updateFirestoreCart(newCart);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart, user, dataFetched]); // Include 'dataFetched' as a dependency for the useEffect that updates Firestore
 
   return (
