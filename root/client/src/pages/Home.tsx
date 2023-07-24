@@ -11,8 +11,8 @@ import { AuthContext } from "../contexts/AuthContext";
 import { CartContext } from "../contexts/CartContext";
 import { products } from "../data/products";
 import { CART_ACTIONS } from "../hooks/CartReducerActions";
-import diet from "../static/diet.gif";
-import trainer from "../static/trainer.gif";
+import diet from "../static/home/diet.jpg";
+import workout from "../static/home/workout.jpeg";
 import { cartItem } from "../types/cartTypes";
 import "./styles/home.scss";
  
@@ -29,9 +29,22 @@ export default function Home() {
     toast.success(`${product.name} aggiunto al carrello!`)
   }
 
+  const getProductImg = (productName: string): string => {
+    switch (productName) {
+      case "Pacchetto Base":
+        return "https://mattiacadinu.com/cdn/shop/products/1.png?v=1663229752&width=1946";
+      case "Pacchetto Avanzato":
+        return "https://mattiacadinu.com/cdn/shop/products/2.png?v=1663229330&width=1946";
+      case "Pacchetto Finale":
+        return "https://mattiacadinu.com/cdn/shop/products/3.png?v=1663229579&width=1946";
+      default:
+        return "https://mattiacadinu.com/cdn/shop/products/3.png?v=1663229579&width=1946";
+    }
+  }
+
   const productCardEls = products.map((product) => (
     <Card style={{ width: "18rem" }} key={product.id}>
-      <Card.Img variant="top" src="holder.js/100px180" />
+      <Card.Img variant="top" src={getProductImg(product.name)} alt={product.name} />
       <Card.Body>
         <Card.Title>{product.name}</Card.Title>
         <Card.Text>{product.desc}</Card.Text>
@@ -69,7 +82,7 @@ export default function Home() {
               </div>
             </a>
             <a href="#coaching" className="home-steps_step">
-              <img src={trainer} />
+              <img src={workout} />
               <div className="discover">
                 <FontAwesomeIcon icon={faArrowDown} />
               </div>

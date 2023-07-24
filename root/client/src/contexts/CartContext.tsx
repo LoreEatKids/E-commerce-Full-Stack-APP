@@ -39,7 +39,7 @@ const CartProvider = ({ children }: childrenType) => {
     }
   };
 
-  useEffect(() => {
+  useEffect(() => { // when a new user signs in it gets his id and find his cart in firestore
     if (!user) {
       setLoading(false);
       return;
@@ -69,8 +69,7 @@ const CartProvider = ({ children }: childrenType) => {
     fetchUserCart();
   }, [user]);
 
-  useEffect(() => {
-    // create a new cart with the updated values
+  useEffect(() => { // when something happens to cart this will create a new instance of the cart and upload ti boath to firestore and locally
     if (!user) {
       setLoading(false);
       setDataFetched(true);

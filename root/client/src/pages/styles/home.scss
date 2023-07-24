@@ -101,6 +101,11 @@
     flex-wrap: wrap;
     gap: 100px;
 
+    img:hover {
+      padding: 5px;
+      transition: all 200ms;
+    }
+
     .product_btn {
       margin-top: 20px;
       justify-content: center;

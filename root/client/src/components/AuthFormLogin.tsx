@@ -46,7 +46,7 @@ export default function AuthFormLogin() {
       <div className="form_inputs">
         <div className="input_container">
           <Form.Label htmlFor="inputPassword5">Email</Form.Label>
-          <Form.Control id="inputPassword5" {...register("email")} />
+          <Form.Control id="inputPassword5" {...register("email")} autoFocus />
           <Form.Text id="passwordHelpBlock" muted>
             {!errors.email ? (
               "ex: example@example.com"
