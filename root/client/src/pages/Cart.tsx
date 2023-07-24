@@ -23,7 +23,7 @@ export default function Cart() {
   }
 
   const handleCheckout = async () => {
-    await fetch("http://localhost:3000/checkout", {
+    await fetch("https://persona-coaching-backend.onrender.com/checkout", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
