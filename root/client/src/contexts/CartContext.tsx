@@ -99,12 +99,12 @@ const CartProvider = ({ children }: childrenType) => {
       cartItems,
     };
 
-    // update cart in firestore, but only if data has been fetched
     if (dataFetched) {
+      cartDispatch({ type: CART_ACTIONS.LOAD_CART, payload: newCart });
       updateFirestoreCart(newCart);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cart, user, dataFetched]); // Include 'dataFetched' as a dependency for the useEffect that updates Firestore
+  }, [cart, user, dataFetched]);
 
   return (
     <CartContext.Provider value={{ cart, cartDispatch }}>

@@ -11,7 +11,7 @@ export const products: cartItem[] = [
   {
     id: "price_1NX4lPGZQBXHmvJq6bvO6McJ",
     name: "Pacchetto Avanzato",
-    desc: "Un paccheto avanzato con una durato id 9 mesi",
+    desc: "Un paccheto avanzato con una durata di 9 mesi",
     price: 600,
     quantity: 1,
   },

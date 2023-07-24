@@ -45,6 +45,8 @@
             transition: all 200ms ease-out
         };
       }
+
+      &:active { color: white !important; }
     }
   }
 
