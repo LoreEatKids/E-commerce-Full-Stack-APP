@@ -3,12 +3,12 @@ const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY);
 const express = require('express');
 const cors = require("cors");
 
-const domain = "http://localhost:5173";
+const domain = "https://personal-coaching.netlify.app";
 const app = express();
 
 app.use(
   cors({
-    origin: [domain, "https://personal-coaching.netlify.app"],
+    origin: ["http://localhost:5173", domain],
   })
 );
 app.use(express.static("public"));
