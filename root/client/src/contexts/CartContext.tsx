@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import {
   Dispatch,
@@ -26,7 +27,8 @@ const CartProvider = ({ children }: childrenType) => {
   const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState<boolean>(true);
   const [cart, cartDispatch] = useReducer(reducer, initCartState);
-  const [dataFetched, setDataFetched] = useState<boolean>(false);
+
+  console.log(user, cart);
 
   const updateFirestoreCart = async (cart: cartType) => {
     if (!user) return;
@@ -39,7 +41,7 @@ const CartProvider = ({ children }: childrenType) => {
     }
   };
 
-  useEffect(() => { // when a new user signs in it gets his id and find his cart in firestore
+  useEffect(() => { // gets the user cart by his id from firestore
     if (!user) {
       setLoading(false);
       return;
@@ -58,56 +60,50 @@ const CartProvider = ({ children }: childrenType) => {
         }
 
         setLoading(false);
-        setDataFetched(true); // Set the flag to true when data is fetched
       } catch (error) {
         console.error(error);
         setLoading(false);
-        setDataFetched(true); // Set the flag to true even if there's an error to prevent infinite loading
       }
     };
 
     fetchUserCart();
   }, [user]);
 
-  useEffect(() => { // when something happens to cart this will create a new instance of the cart and upload ti boath to firestore and locally
-    if (!user) {
-      setLoading(false);
-      setDataFetched(true);
-      return;
+  useEffect(() => { // whenever we add/remove/update the cart we update it in firestore
+    if(!user) {
+      return setLoading(false);
     }
-    
-    const totalQuantities: number = cart.cartItems.reduce(
-      (previousValue, cartItem) => previousValue + cartItem.quantity,
-      0
-    );
-    const totalPrice = new Intl.NumberFormat("it-IT", {
-      style: "currency",
-      currency: "EUR",
-    }).format(
-      cart.cartItems.reduce(
-        (previousValue, cartItem) =>
-          previousValue + cartItem.quantity * cartItem.price,
-        0
-      )
-    );
-    const cartItems = cart.cartItems;
 
-    const newCart: cartType = {
-      totalQuantities,
-      totalPrice,
-      cartItems,
-    };
+    const unsub = () => {
+      const totalQuantities: number = cart.cartItems.reduce((previousValue, cartItem) => previousValue + cartItem.quantity, 0);
+      const totalPrice = new Intl.NumberFormat("it-IT", {
+        style: "currency",
+        currency: "EUR",
+      }).format(
+        cart.cartItems.reduce(
+          (previousValue, cartItem) =>
+            previousValue + cartItem.quantity * cartItem.price,
+          0
+        )
+      );
+      const cartItems = cart.cartItems;
+  
+      const newCart: cartType = {
+        totalQuantities,
+        totalPrice,
+        cartItems
+      }
 
-    if (dataFetched) {
       cartDispatch({ type: CART_ACTIONS.LOAD_CART, payload: newCart });
       updateFirestoreCart(newCart);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cart, user, dataFetched]);
+  
+    !loading && unsub();  
+  }, [cart.cartItems]);
 
   return (
     <CartContext.Provider value={{ cart, cartDispatch }}>
-      {!loading && dataFetched && children}
+      {!loading && children}
     </CartContext.Provider>
   );
 };

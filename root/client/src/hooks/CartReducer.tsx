@@ -2,10 +2,10 @@ import { cartItem, cartType } from "../types/cartTypes";
 import { CART_ACTIONS } from "./CartReducerActions";
 
 export const initCartState: cartType = {
-    totalQuantities: 0,
-    totalPrice: 0,
-    cartItems: []
-}
+  totalQuantities: 0,
+  totalPrice: "0.0€",
+  cartItems: [],
+};
 
 export type ReducerAction = {
     type: string,
